@@ -16,14 +16,14 @@ import javax.swing.border.TitledBorder;
 
 import com.shawn.utils.SwingConsole;
 
-public class ButtonGroup extends JApplet{
+public class ButtonGroup1 extends JApplet{
 	private static String[] ids = {
 		"June","Ward","Beaver",
 		"Wally","Eddie","Lumpy",
 	};
 	
 	static JPanel makeBPanel(Class klass,String[] ids){
-		ButtonGroup bg = new ButtonGroup();
+		ButtonGroup1 bg = new ButtonGroup1();
 		JPanel jp = new JPanel();
 		String title = klass.getName();
 		title = title.substring(title.lastIndexOf('.')+1);
@@ -50,6 +50,6 @@ public class ButtonGroup extends JApplet{
 		cp.add(makeBPanel(JRadioButton.class, ids));
 	}
 	public static void main(String[] args) {
-		SwingConsole.run(new ButtonGroup(), 500, 300);
+		SwingConsole.run(new ButtonGroup1(), 500, 300);
 	}
 }
