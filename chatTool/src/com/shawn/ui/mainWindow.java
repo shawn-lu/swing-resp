@@ -7,15 +7,24 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+
 import java.awt.FlowLayout;
+
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.JTextArea;
 import javax.swing.JTextPane;
 import javax.swing.JEditorPane;
 import javax.swing.JButton;
+
+import com.shawn.utils.SocketUtil;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.io.IOException;
+import java.net.InetSocketAddress;
+import java.nio.channels.ServerSocketChannel;
+import java.nio.channels.SocketChannel;
 
 public class mainWindow extends JFrame {
 
@@ -25,6 +34,33 @@ public class mainWindow extends JFrame {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		
+		final SocketChannel socketChannel = null;
+		Runnable r = new Runnable() {		
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				if(SocketUtil.isPortAvailable(SocketUtil.port)){
+					//端口已经被占用，作客户端
+				}else{
+					//端口未被占用，作服务端
+					ServerSocketChannel serverSocketChannel;
+					
+//					socketChannel = null;
+					try {
+						serverSocketChannel = ServerSocketChannel.open();
+						serverSocketChannel.socket().bind(new InetSocketAddress(SocketUtil.port));
+						while (true) {
+							
+						}
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			}
+		};
+		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -35,8 +71,8 @@ public class mainWindow extends JFrame {
 				}
 			}
 		});
+		EventQueue.invokeLater(r);
 	}
-
 	/**
 	 * Create the frame.
 	 */
